@@ -1,5 +1,5 @@
 
-## استفاده از localstorage در react
+## use localstorage in react
 
 first : clone project
 
