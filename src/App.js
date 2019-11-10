@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AddUser from './Components/AddUser';
 import User from './Components/User';
-import Loading from "./partialComponent/Loading";
 import LocalStorage from "./Services/LocalStorage";
 
 
@@ -109,7 +108,6 @@ export default class App extends Component {
             onDelete={this.deleteHandler}
             onEdit={this.editHandler}
             users={this.state.users}/>
-            <Loading  />
         </div>
     )
   }
