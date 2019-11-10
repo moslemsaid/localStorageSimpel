@@ -59,7 +59,7 @@ export default class App extends Component {
       LocalStorage.edit(el.dataset.userId ,value);
 
       const users = this.state.users.map(user=>{
-        if(user.id===parseInt(el.dataset.userId)){
+        if(user.id==parseInt(el.dataset.userId)){
           user.name = value; 
           return user;
         }else{
@@ -73,7 +73,6 @@ export default class App extends Component {
           editing:false
         }
       });
-      this.forceUpdate();
     }
   
   }
@@ -87,6 +86,12 @@ export default class App extends Component {
     if(inputValue.value == value){
       inputValue.value='';
       editing = false;
+      inputValue.removeAttribute('data-user-id');
+      this.setState(prevState=>{
+        return  {
+          editing 
+        }
+      });
     }else{
       inputValue.value = value;
       inputValue.dataset.userId=selectedUser.id;
@@ -101,7 +106,6 @@ export default class App extends Component {
   render() {
     document.title = "add user";
     return (
-
         <div className="containerMain">
           <br />
             <AddUser 
