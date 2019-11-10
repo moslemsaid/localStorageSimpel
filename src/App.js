@@ -20,13 +20,12 @@ export default class App extends Component {
     Object.keys(all).forEach((item,i)=>{
       users.push({name:all[item] , id:item})
     })
-   
+
     this.setState(prevState=>{
       return {
         users
       }
     });
-  
   }
   deleteHandler= (value)=>{
     const newUsers = this.state.users.filter(user=>{
@@ -53,26 +52,29 @@ export default class App extends Component {
           users:[...prevState.users , {name:value ,id:key}]
         }
       });
-  }else{
-    //edit
-    const el = document.querySelector('#addUser');
+    }else{
+ 
+      //edit
+      const el = document.querySelector('#addUser');
+      LocalStorage.edit(el.dataset.userId ,value);
 
-    const users = this.state.users.map(user=>{
-      if(user.id===el.dataset.userId){
-        user.name = value; 
-        return user;
-      }else{
-        return user;
-      }
-    })
-    this.setState(prevState=>{
-      return {
-        users , 
-        editing:false
-      }
-    });
-    LocalStorage.edit(el.dataset.userId ,value);
- }
+      const users = this.state.users.map(user=>{
+        if(user.id===parseInt(el.dataset.userId)){
+          user.name = value; 
+          return user;
+        }else{
+          return user;
+        }
+      })
+
+      this.setState(prevState=>{
+        return {
+          users , 
+          editing:false
+        }
+      });
+      this.forceUpdate();
+    }
   
   }
   editHandler = (value)=>{
